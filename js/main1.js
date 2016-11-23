@@ -8,7 +8,6 @@ $('#mySelect').change(function() {
 		$('.desktop-two-center-three').css("display", "none");
 		$('.desktop-two-center-four').css("display", "none");
 		$('.desktop-two-center-five').css("display", "none");
-		$('.desktop-two-center-six').css("display", "none");
 
 		$(".desktop-two-button").removeClass("white_bd1");
 	} else if(select_value == 2) {
@@ -19,7 +18,6 @@ $('#mySelect').change(function() {
 		$(".desktop-two-center .news").css("display", "block");
 		$('.desktop-two-button').attr("disabled", "disabled");
 		$('.desktop-two-center-five').css("display", "none");
-		$('.desktop-two-center-six').css("display", "none");
 		$(".desktop-two-button").addClass("white_bd1");
 	} else if(select_value == 3) {
 		$('.desktop-two-center-three').css("display", "block");
@@ -27,7 +25,6 @@ $('#mySelect').change(function() {
 		$('.desktop-two-center-two').css("display", "none");
 		$('.desktop-two-center-four').css("display", "none");
 		$('.desktop-two-center-five').css("display", "none");
-		$('.desktop-two-center-six').css("display", "none");
 		$(".desktop-two-button").addClass("white_bd1");
 	} else if(select_value == 4) {
 		$('.desktop-two-center-four').css("display", "block");
@@ -35,7 +32,6 @@ $('#mySelect').change(function() {
 		$('.desktop-two-center-two').css("display", "none");
 		$('.desktop-two-center-three').css("display", "none");
 		$('.desktop-two-center-five').css("display", "none");
-		$('.desktop-two-center-six').css("display", "none");
 		$(".desktop-two-button").addClass("white_bd1");
 	} else if(select_value == 5) {
 		$('.desktop-two-center-five').css("display", "block");
@@ -43,17 +39,8 @@ $('#mySelect').change(function() {
 		$('.desktop-two-center-two').css("display", "none");
 		$('.desktop-two-center-three').css("display", "none");
 		$('.desktop-two-center-four').css("display", "none");
-		$('.desktop-two-center-six').css("display", "none");
 		$(".desktop-two-button").addClass("white_bd1");
-	} else if(select_value == 6) {
-		$('.desktop-two-center-six').css("display", "block");
-		$('.desktop-two-center-one').css("display", "none");
-		$('.desktop-two-center-two').css("display", "none");
-		$('.desktop-two-center-three').css("display", "none");
-		$('.desktop-two-center-four').css("display", "none");
-		$('.desktop-two-center-five').css("display", "none");
-		$(".desktop-two-button").addClass("white_bd1");
-	} else {}
+	}  else {}
 })
 
 //select里面新增加一项
@@ -69,31 +56,6 @@ $(".input1").focus(function() {
 
 });
 
-$(".add").click(function() {
-	$(".city_table").show();
-})
-$(".city_table .button").click(function() {
-	$(".city_table").hide();
-	var val1 = $(".input1").val();
-	$.cookie("input1-1", val1, {
-		expires: 0.05
-	});
-	var MyCookie1 = $.cookie('input1-1');
-	//  $(".icon-index").html(MyCookie1+'</br>'+MyCookie2);
-	$(".select6").html(MyCookie1);
-
-	// 百度地图API功能 引入
-	var map = new BMap.Map("allmap");
-	var point = new BMap.Point(116.331398, 39.897445);
-	map.centerAndZoom(point, 11);
-	map.enableScrollWheelZoom(true);
-
-	var city = $("#cityName").val();
-	if(city != "") {
-		map.centerAndZoom(city, 11); // 用城市名设置地图中心点
-	}
-
-})
 
 $(".desktop-two-button").click(function() {
 	$(".desktop-two-button").addClass("white_bd");
@@ -210,3 +172,36 @@ $(".db_click2").dblclick(function() {
 	$(this).hide();
 	$(".db_click1").show();
 })
+
+// 右键切换模式（资源管理界面，应用管理界面）
+$(function() {
+	var imageMenuData = [
+		[{
+			text: "资源管理界面",
+			func: function() {
+				var src = $(this).attr("src");
+//				window.open('https://baoshan.i-stack.org');新页面打开
+				window.location.href='https://baoshan.i-stack.org';
+			}
+		}],
+		[{
+			text: "应用管理界面",
+			func: function() {
+				window.open('http://www.baidu.com');
+			}
+		}]
+	];
+
+	$("body").smartMenu(imageMenuData, {
+		name: "body"
+	});
+	//	var bodyMenuData = [
+	//		[{
+	//			text: "页面空白处点击是否冲突测试"
+	//		}]
+	//	];
+	//	$(".toggle-icon").click(function() {
+	//		if(!$(this).parent(".pad").find(".specific-details").is(":animated"))
+	//			$(this).parent(".pad").find(".specific-details").slideToggle();
+	//	})
+});
